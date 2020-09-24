@@ -13,6 +13,8 @@ import { SidenoteComponent } from './savedlyricsbar/sidenote/sidenote.component'
 import { SavedlyricspageComponent } from './savedlyricspage/savedlyricspage.component';
 import { NoteComponent } from './savedlyricspage/note/note.component';
 import { FooterComponent } from './footer/footer.component';
+import { HttpClientModule }    from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
