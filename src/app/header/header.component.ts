@@ -14,6 +14,10 @@ export class HeaderComponent implements OnInit {
     this.headerappService.sendNavigation("home");
   }
 
+  calllyrics(){
+    this.headerappService.sendNavigation("lyrics")
+  }
+
   ngOnInit(): void {
   }
 

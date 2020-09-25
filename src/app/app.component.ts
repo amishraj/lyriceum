@@ -26,6 +26,9 @@ export class AppComponent implements OnInit {
       else if(data=='Saved'){
         this.gotosaved();
       }
+      else if(data=='lyrics'){
+        this.gotosong();
+      }
       // console.log("Received homeclickedvalue: " + data); 
     } )
   }
