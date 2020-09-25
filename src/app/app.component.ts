@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { HeaderAppService } from './header-app.service' 
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,20 @@ export class AppComponent implements OnInit {
   showsavedlyrics:boolean=false;
   savedbar:boolean=true;
 
-  constructor(){}
+  homesubscription;
+
+  constructor(private headerappService: HeaderAppService){
+    this.homesubscription= this.headerappService.getNavigation()
+    .subscribe(data=>{ 
+      if(data=='home'){
+        this.gohome();
+      }
+      else if(data=='Saved'){
+        this.gotosaved();
+      }
+      // console.log("Received homeclickedvalue: " + data); 
+    } )
+  }
 
   gohome(){
     this.showhome=true;

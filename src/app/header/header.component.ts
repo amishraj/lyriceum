@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {HeaderAppService} from '../header-app.service'
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private headerappService: HeaderAppService) { }
+
+  callhome(){
+    this.headerappService.sendNavigation("home");
+  }
 
   ngOnInit(): void {
   }

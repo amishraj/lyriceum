@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map'
 export class SearchService {
 
   clientId: '49b2f3fa3485454aab74415a1d725356'
+  artistsUrl: ''
 
   constructor(private http: HttpClient) { }
 }

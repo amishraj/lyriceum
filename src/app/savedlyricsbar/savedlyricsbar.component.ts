@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HeaderAppService} from '../header-app.service'
 
 @Component({
   selector: 'app-savedlyricsbar',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SavedlyricsbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private headerappService: HeaderAppService) { }
+
+  goSaved(){
+    this.headerappService.sendNavigation('Saved');
+  }
 
   ngOnInit(): void {
   }
