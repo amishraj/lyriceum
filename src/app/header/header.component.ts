@@ -36,9 +36,9 @@ export class HeaderComponent implements OnInit {
     this.headerappService.sendNavigation("home");
   }
 
-  gotolyrics(artist:string, track:string, image:string){
+  gotolyrics(artist:string, track:string, image:string, link:string){
     this.headerappService.sendNavigation("lyrics")
-    this.homelyricsservice.sendSongInfo(artist, track, image)
+    this.homelyricsservice.sendSongInfo(artist, track, image, link)
   }
 
   calllyrics(){

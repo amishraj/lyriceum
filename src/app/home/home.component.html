@@ -13,7 +13,7 @@
   <ng-container *ngIf=" !loading">
 
 
-  <div (click)="gotolyrics(item.artists[0].name, item.name, item.album_type, item.images[0].url, item.id)" *ngFor="let item of result" 
+  <div (click)="gotolyrics(item.artists[0].name, item.name, item.album_type, item.images[0].url, item.id, item.external_urls.spotify)" *ngFor="let item of result" 
       class="bg-light zoom card mb-1" >
     <div class="row no-gutters">
       <div class="col-md-3">
@@ -46,7 +46,7 @@
       </div>
       <div class="modal-body">
         <!--Album's Tracks-->
-        <div (click)="gotolyrics(track.artists[0].name, track.name, track.type, 'nourl', track.id)"
+        <div (click)="gotolyrics(track.artists[0].name, track.name, track.type, 'nourl', track.id, track.external_urls.spotify)"
          *ngFor="let track of albumsongs" class="zoom card border-info mb-3" >
           <div class="card-body text-info">
             <p  class="card-text">{{track.track_number}}. {{track.name}} </p>

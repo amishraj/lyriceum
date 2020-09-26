@@ -60,11 +60,11 @@ export class HomeComponent implements OnInit {
     }, 0);
   }
 
-  gotolyrics(artist:string, song:string, type:string, image:string, id:string){
+  gotolyrics(artist:string, song:string, type:string, image:string, id:string, link:string){
     
 
     if(type=='single'){
-      this.homelyricsservice.sendSongInfo(artist,song, image)
+      this.homelyricsservice.sendSongInfo(artist,song, image, link)
       this.homeappservice.showLyricsFromHome();
     }
     else if(type=='album' || type=='compilation'){
@@ -99,7 +99,7 @@ export class HomeComponent implements OnInit {
         this.spotifyservice.getTrackInfo(id, this.token).subscribe(data=>{
           //  console.log(data)
           var sendimage= data['album']['images'][0]['url']
-          this.homelyricsservice.sendSongInfo(artist,song, sendimage)
+          this.homelyricsservice.sendSongInfo(artist,song, sendimage, link)
           this.homeappservice.showLyricsFromHome();
         })
       })

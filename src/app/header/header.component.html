@@ -42,7 +42,7 @@
    [ngModelOptions]="{standalone: true}">
    
    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <li (click)="gotolyrics(song.artists[0].name, song.name, song.album.images[0].url)" 
+    <li (click)="gotolyrics(song.artists[0].name, song.name, song.album.images[0].url, song.external_urls.spotify)" 
      *ngFor="let song of result_songs" >
      <div class="row">
      

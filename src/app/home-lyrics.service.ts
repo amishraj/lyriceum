@@ -10,9 +10,9 @@ export class HomeLyricsService {
 
   constructor() { }
 
-  sendSongInfo(artist:string, track:string, image:string) {
+  sendSongInfo(artist:string, track:string, image:string, link:string) {
     // console.log("CLICK: " + artist + "," + track)
-    this.song.next({artist:artist, track:track, image:image});
+    this.song.next({artist:artist, track:track, image:image, link:link});
   }
 
   sendAlbumError(){

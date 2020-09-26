@@ -10,6 +10,8 @@ export class SongdetailsComponent implements OnInit {
   @Input('nSong') songelement: string;
   @Input('nArtist') artistelement: string;
   @Input('nImage') imageelement: string;
+  @Input('nLink') linkelement: string;
+
 
 
   constructor() { }

@@ -12,6 +12,8 @@ import {HomeLyricsService}from '../home-lyrics.service'
 })
 export class SongComponent implements OnInit {
 
+  songlink
+
   loading=false;
   token;
 
@@ -25,6 +27,7 @@ export class SongComponent implements OnInit {
   artist:string;
   song:string;
   songimage:string;
+  link:string;
 
   error=null;
 
@@ -85,8 +88,9 @@ export class SongComponent implements OnInit {
         var artist= data['artist']
         var song= data['track']
         var image= data['image']
+         var songlink= data['link']
 
-        this.findlyrics(artist, song, image)
+        this.findlyrics(artist, song, image, songlink)
       })
 
      this.albumerrorsubscription= this.homelyricsservice.getAlbumError()
@@ -123,12 +127,13 @@ export class SongComponent implements OnInit {
     }, 0);
 }
 
-  findlyrics(artist:string, song:string, image:string){
+  findlyrics(artist:string, song:string, image:string, link:string){
         // console.log(btoa("49b2f3fa3485454aab74415a1d725356:a82dfe26e0c84d409e3c725a357bd5b0"));
 
         this.artist=artist;
         this.song=song;
         this.songimage=image;
+        this.link= link;
 
     this.onActivate('');
 
