@@ -28,7 +28,7 @@
 [nArtist]="artist"
 [nImage]="songimage"
 
-*ngIf="!nosongerr && !showalbumerr && !loading && showinglyrics"
+*ngIf="!nosongerr && !showalbumerr && !loading && !showemptymsg"
 
 ></app-songdetails>
 
@@ -38,13 +38,13 @@
   </div>
 </div>
 
-<ng-container *ngIf="!nosongerr && !showalbumerr && !loading && !showinglyrics">
+<!-- <ng-container *ngIf="!nosongerr && !showalbumerr && !loading && !showinglyrics">
 
 <div *ngFor="let song of result_songs; let i=index;">
 <div (click)="findlyrics(song.artists[0].name, song.name, song.album.images[0].url); onActivate();" class="card mb-1" >
     <div class="row no-gutters">
       <div class="col-md-3">
-        <img src={{song.album.images[0].url}} class="card-img h-100" alt="...">
+        <img class="rounded" src={{song.album.images[0].url}} class="card-img h-100" alt="...">
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -57,12 +57,12 @@
   </div>
 </div>
 
-</ng-container>
-
+</ng-container> -->
+<!-- 
 <div class="alert alert-danger" *ngIf="error">
     <h3>An Error was Encountered</h3>
     <p>{{error}}</p>
-</div>
+</div> -->
 
 
 <div class="alert alert-danger" *ngIf="showalbumerr">
@@ -74,4 +74,4 @@
   <h3>No Lyrics Available</h3>
   <p>Lyrics could not be retrieved for the song</p>
 </div>
-<app-lyrics *ngIf="showinglyrics && !loading && !nosongerr && !showalbumerr"  [nLyric]="lyrics"></app-lyrics>
+<app-lyrics *ngIf="!showemptymsg && !loading && !nosongerr && !showalbumerr"  [nLyric]="lyrics"></app-lyrics>

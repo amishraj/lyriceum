@@ -47,7 +47,6 @@ export class SongComponent implements OnInit {
 
     this.searchsubscription= this.appsongservice.getKeyword()
     .subscribe(data=>{
-      this.showemptymsg=false;
       this.showalbumerr=false;
       this.nosongerr=false;
 

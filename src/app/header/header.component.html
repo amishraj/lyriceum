@@ -1,3 +1,5 @@
+
+
 <nav class="navbar  sticky-top navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Lyriceum</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,10 +18,60 @@
             <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
           </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" [(ngModel)]="searchword" type="search" placeholder="Search Songs" aria-label="Search"
-        [ngModelOptions]="{standalone: true}">
+      <div class="dropdown">
+      <form class="form-inline my-2 my-lg-0 " >
+        
+     
+        <div class="dropdown">     <!-- <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+      Button dropdown <span class="caret"></span>
+    </button> -->
+    <input class="input-large search-query form-control mr-sm-2"
+    [(ngModel)]="searchword" 
+    type="text"
+     placeholder="Search Songs"
+      aria-label="Search"
+      style=" "
+      data-toggle="dropdown"
+      (input)="sendsearch()"
+      (keydown.backspace)="backspacefunction()"
+
+   [ngModelOptions]="{standalone: true}">
+   
+   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li (click)="gotolyrics(song.artists[0].name, song.name, song.album.images[0].url)" 
+     *ngFor="let song of result_songs" >
+     <div class="row">
+     
+       <div class="col">
+        <a class="dropdown-item" href="#">
+          <img class="rounded" src={{song.album.images[2].url}} style="max-height: 30px; max-width: 30px;" alt="">
+          {{song.name}}- {{song.artists[0].name}}
+         </a>
+       </div>
+       
+     </div>
+     
+    </li>  
+    </div>
+  </div>
+
         <button (click)="sendsearch()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
       </form>
+
+    </div>
     </div>
   </nav>
+
+
+  <!-- <button type="button" class="btn btn-primary" (click)="dropdown.show()">Show</button>
+  <button type="button" class="btn btn-primary" (click)="dropdown.hide()">Hide</button> -->
+  <!-- <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown button
+    </button>
+    <input data-toggle="dropdown" type="text">
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li  *ngFor="let song of result_songs" ><a class="dropdown-item" href="#">{{song.name}}- {{song.artists[0].name}}</a></li>  
+    </div>
+  </div> -->

@@ -13,7 +13,7 @@ export class SpotifyService {
   constructor(private http: HttpClient) { }
 
   search(token:any, keyword:string){
-    console.log("Token= " + token)
+    // console.log("Token= " + token)
 
 
     let searchParams= new HttpParams();

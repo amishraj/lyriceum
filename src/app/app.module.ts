@@ -14,6 +14,10 @@ import { SavedlyricspageComponent } from './savedlyricspage/savedlyricspage.comp
 import { NoteComponent } from './savedlyricspage/note/note.component';
 import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule }    from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 
 
 @NgModule({
@@ -33,7 +37,9 @@ import { HttpClientModule }    from '@angular/common/http';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
