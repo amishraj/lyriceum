@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { HeaderAppService } from './header-app.service' 
+import { AppSongService} from './app-song.service'
+import {HomeAppService} from './home-app.service'
 
 @Component({
   selector: 'app-root',
@@ -16,8 +18,12 @@ export class AppComponent implements OnInit {
   savedbar:boolean=true;
 
   homesubscription;
+  searchkeywordsubscription;
 
-  constructor(private headerappService: HeaderAppService){
+  constructor(private headerappService: HeaderAppService, 
+    private appsongservice: AppSongService,
+    private homeappservice: HomeAppService)
+    {
     this.homesubscription= this.headerappService.getNavigation()
     .subscribe(data=>{ 
       if(data=='home'){
@@ -31,6 +37,17 @@ export class AppComponent implements OnInit {
       }
       // console.log("Received homeclickedvalue: " + data); 
     } )
+
+    this.searchkeywordsubscription= this.headerappService.getSearchWord()
+    .subscribe(data=>{
+      this.appsongservice.sendKeyword(data)
+    })
+
+    this.homeappservice.getLyricsFromHome().subscribe(data=>{
+      if(data==true){
+        this.gotosong();
+      }
+    })
   }
 
   gohome(){

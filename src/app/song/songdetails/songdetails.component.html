@@ -1,9 +1,22 @@
 <div class="card bg-dark text-white" >
-    <img class="card-img" src="assets/travis.jpg" alt="Card image">
+   <div class="crop-height flip">
+      <img class="card-img scale flip" src={{imageelement}} alt="Card image">
+    </div>
     <div class="card-img-overlay">
-      <h5 class="card-title">Stargazing</h5>
+      <h5 class="card-title">{{songelement}}</h5>
       <p class="card-text">
-          Travis Scott</p>
-      <p class="card-text">ASTROWORLD</p>
+          {{artistelement}}</p>
+      <!-- <p class="card-text">ASTROWORLD</p> -->
     </div>
   </div>
+
+  <br>
+<!-- 
+  <figure>
+    <div class="crop-height flip">
+      <img class="scale flip" src={{imageelement}} />
+    </div> 
+    <figcaption>
+      There's the happy couple! This crops from the top (unless you're using IE8 or lower.)
+    </figcaption>
+  </figure> -->

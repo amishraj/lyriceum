@@ -8,6 +8,8 @@ import {HeaderAppService} from '../header-app.service'
 })
 export class HeaderComponent implements OnInit {
 
+  searchword='';
+
   constructor(private headerappService: HeaderAppService) { }
 
   callhome(){
@@ -16,6 +18,11 @@ export class HeaderComponent implements OnInit {
 
   calllyrics(){
     this.headerappService.sendNavigation("lyrics")
+  }
+
+  sendsearch(){
+    this.calllyrics();
+    this.headerappService.sendSearchWord(this.searchword)
   }
 
   ngOnInit(): void {

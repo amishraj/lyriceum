@@ -6,6 +6,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class HeaderAppService {
   private navigation = new Subject<any>();
+  private search= new Subject<any>();
 
   constructor() { }
 
@@ -16,4 +17,13 @@ export class HeaderAppService {
 getNavigation(): Observable<any> {
     return this.navigation.asObservable();
 }
+
+  sendSearchWord(keyword:string){
+    this.search.next(keyword)
+  }
+
+  getSearchWord(): Observable<any> {
+    return this.search.asObservable();
+  }
+
 }
