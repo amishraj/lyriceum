@@ -1,15 +1,7 @@
 
 <div class="row"> 
-    <app-note></app-note>
-    <app-note></app-note>
-    <app-note></app-note>
-    <app-note></app-note>
-    <app-note></app-note>
-    <app-note></app-note>
-    <app-note></app-note>
-    <app-note></app-note>
-    <app-note></app-note>
-    <app-note></app-note>
-    <app-note></app-note>
-    <app-note></app-note>
-    <app-note></app-note></div>
+    <app-note *ngFor="let note of savedlyrics" 
+    (noteDelete)="onNoteDeleted($event)"
+    [nSong]="note.song"
+     [nLyric]="note.lyric"></app-note>
+</div>

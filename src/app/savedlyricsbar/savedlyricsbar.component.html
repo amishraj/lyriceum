@@ -9,16 +9,14 @@
               
             </button></div>
         </div></div>
+
     <div class="card-body">
-      <app-sidenote></app-sidenote>
-      <app-sidenote></app-sidenote>
-      <app-sidenote></app-sidenote>
-      <app-sidenote></app-sidenote>
-      <app-sidenote></app-sidenote>
-      <app-sidenote></app-sidenote>
-      <app-sidenote></app-sidenote>
-      <app-sidenote></app-sidenote>
-      <app-sidenote></app-sidenote>
-      <app-sidenote></app-sidenote>
+      <app-sidenote  *ngFor="let lyric of lyrics" [nLyric]="lyric.lyric" [nSong]="lyric.song"></app-sidenote>
+      <!-- <div>
+        <p>{{lyric.lyric}}</p>
+      </div> -->
     </div>
+
+    <!-- <app-savedlyricspage></app-savedlyricspage> -->
+
   </div>

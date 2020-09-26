@@ -74,4 +74,4 @@
   <h3>No Lyrics Available</h3>
   <p>Lyrics could not be retrieved for the song</p>
 </div>
-<app-lyrics *ngIf="!showemptymsg && !loading && !nosongerr && !showalbumerr"  [nLyric]="lyrics"></app-lyrics>
+<app-lyrics *ngIf="!showemptymsg && !loading && !nosongerr && !showalbumerr"[nSong]="song"  [nLyric]="lyrics"></app-lyrics>

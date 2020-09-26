@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sidenote',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidenote.component.css']
 })
 export class SidenoteComponent implements OnInit {
+
+  @Input('nLyric') lyric:string;
+  @Input('nSong') song:string;
+
 
   constructor() { }
 
