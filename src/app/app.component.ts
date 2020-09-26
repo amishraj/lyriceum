@@ -49,6 +49,8 @@ export class AppComponent implements OnInit {
     this.homeappservice.getLyricsFromHome().subscribe(data=>{
       if(data==true){
         this.gotosong();
+
+        this.headerappService.sendToggleStatus(true);
       }
     })
   }

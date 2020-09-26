@@ -4,8 +4,8 @@
       <h5 class="card-title">
         <div class="row">
           <div class="col">Lyrics</div>
-          <div *ngIf="!selecting" class="col-auto"> <button class="btn btn-light" (click)="startsaving()" >Start Selecting</button></div>
-          <div *ngIf="selecting" class="col-auto"> <button class="btn btn-dark" (click)="stopsaving()" > Stop Selecting</button></div>
+          <!-- <div *ngIf="!selecting" class="col-auto"> <button class="btn btn-light" (click)="startsaving()" >Start Selecting</button></div>
+          <div *ngIf="selecting" class="col-auto"> <button class="btn btn-dark" (click)="stopsaving()" > Stop Selecting</button></div> -->
         </div>
         </h5>
       <pre (mouseup)="showSelectedText()"><br>{{element}}
@@ -36,7 +36,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" (click)="saveLyrics()" class="btn btn-success" data-dismiss="modal">Save</button>
-        <button type="button" (click)="stopsaving()"  data-dismiss="modal" class="btn btn-danger">Stop Selecting</button>
+        <button type="button" (click)="stopsaving(); sendStop();"  data-dismiss="modal" class="btn btn-danger">Stop Selecting</button>
       </div>
     </div>
   </div>

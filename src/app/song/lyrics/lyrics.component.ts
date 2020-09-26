@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import {LyricsSavedpageService} from '../../lyrics-savedpage.service'
+import {HeaderLyricsService}from '../../header-lyrics.service'
 
 @Component({
   selector: 'app-lyrics',
@@ -18,10 +19,25 @@ export class LyricsComponent implements OnInit {
 
   selecting=false;
 
-  constructor(private lyricssavedpageservice: LyricsSavedpageService) { 
+  togglesubscription; //for start/stop selecting
+
+  constructor(private lyricssavedpageservice: LyricsSavedpageService, private headerlyricsservice: HeaderLyricsService) { 
 
     startselecting=false;
     // console.log("Start Selecting: " + startselecting)
+
+    this.togglesubscription= this.headerlyricsservice.gettogglefunc()
+    .subscribe(data=>{
+      if(data=='notselecting'){
+        startselecting=true;
+        this.selecting=true;
+      }
+      else if(data== 'selecting'){
+        startselecting=false;
+        this.selecting=false;
+      }
+    })
+
   }
 
   startsaving(){
@@ -29,6 +45,10 @@ export class LyricsComponent implements OnInit {
     this.selecting=true;
 
     // console.log("Start Selecting: " + startselecting)
+  }
+
+  sendStop(){
+    this.headerlyricsservice.sendStop();
   }
 
   stopsaving(){

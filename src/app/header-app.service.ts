@@ -7,12 +7,15 @@ import { Observable, Subject } from 'rxjs';
 export class HeaderAppService {
   private navigation = new Subject<any>();
   private search= new Subject<any>();
+  private togglestatus= new Subject<any>();
 
   constructor() { }
 
   sendNavigation(location: string) {
     this.navigation.next(location);
 }
+
+
 
 getNavigation(): Observable<any> {
     return this.navigation.asObservable();
@@ -26,4 +29,11 @@ getNavigation(): Observable<any> {
     return this.search.asObservable();
   }
 
+  sendToggleStatus(status:boolean){
+    this.togglestatus.next(status)
+  }
+
+  getToggleStatus():Observable<any>{
+    return this.togglestatus.asObservable();
+  }
 }

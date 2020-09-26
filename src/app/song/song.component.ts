@@ -4,6 +4,7 @@ import { stringify } from 'querystring';
 import {SpotifyService} from '../spotify.service'
 import {AppSongService} from '../app-song.service'
 import {HomeLyricsService}from '../home-lyrics.service'
+import {HeaderSongService} from '../header-song.service'
 
 @Component({
   selector: 'app-song',
@@ -42,7 +43,8 @@ export class SongComponent implements OnInit {
 
   constructor(private http: HttpClient, private spotifyservice: SpotifyService,
      private appsongservice: AppSongService,
-     private homelyricsservice: HomeLyricsService) { 
+     private homelyricsservice: HomeLyricsService,
+     private headersongservice: HeaderSongService) { 
    
     this.spotifyservice.getAuthToken().subscribe(responseData=>{
       this.token=responseData['access_token'];
@@ -147,6 +149,10 @@ export class SongComponent implements OnInit {
       if(this.lyrics==''){
         this.showinglyrics=false;
         this.nosongerr=true;
+
+        //send event to header to hide
+
+        this.headersongservice.sendtogglefunc('hide');
       }
       else{
         this.showinglyrics=true;

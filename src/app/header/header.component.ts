@@ -3,6 +3,8 @@ import {HeaderAppService} from '../header-app.service'
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import {SpotifyService}from '../spotify.service'
 import { HomeLyricsService } from '../home-lyrics.service'
+import {HeaderLyricsService} from '../header-lyrics.service'
+import {HeaderSongService} from '../header-song.service'
 
 @Component({
   selector: 'app-header',
@@ -17,12 +19,50 @@ export class HeaderComponent implements OnInit {
   result_songs
   error
 
+  showtogglebtn:boolean=false;
+
+  togglestatussubscription; //for visibility of the toggle button for selecting/not selecting
+
+  getStopSubscription; //getting the stop selecting event from lyrics Component
+
+  alerthidesubscription; //hide toggle button in case of alert; from song component
+
   constructor(private headerappService: HeaderAppService, private spotifyservice: SpotifyService
-    , private homelyricsservice: HomeLyricsService) { 
+    , private homelyricsservice: HomeLyricsService,
+    private headerlyricsservice: HeaderLyricsService,
+    private headersongservice: HeaderSongService) { 
     this.spotifyservice.getAuthToken().subscribe(responseData=>{
       this.token=responseData['access_token'];
     })
   
+    this.togglestatussubscription= this.headerappService.getToggleStatus()
+    .subscribe(data=>{
+      if(data==true){
+        this.showtogglebtn=true;
+      }
+    })
+
+    this.getStopSubscription= this.headerlyricsservice.getStop()
+    .subscribe(data=>{
+      if(data==true){
+        this.selecting=false;
+      }
+    })
+
+    this.alerthidesubscription= this.headersongservice.gettogglefunc()
+    .subscribe(data=>{
+      if(data=='hide'){
+        this.showtogglebtn=false;
+      }
+    })
+
+  }
+
+  selecting:boolean=false;
+
+  sendtoggle(status:string){
+    this.selecting=!this.selecting
+    this.headerlyricsservice.sendtogglefunc(status);
   }
   
   backspacefunction(){
@@ -33,15 +73,18 @@ export class HeaderComponent implements OnInit {
     }
   }
   callhome(){
+    this.showtogglebtn=false;
     this.headerappService.sendNavigation("home");
   }
 
   gotolyrics(artist:string, track:string, image:string, link:string){
+    this.showtogglebtn=true;
     this.headerappService.sendNavigation("lyrics")
     this.homelyricsservice.sendSongInfo(artist, track, image, link)
   }
 
   calllyrics(){
+    this.showtogglebtn=false;
     this.headerappService.sendNavigation("lyriceum")
   }
 
