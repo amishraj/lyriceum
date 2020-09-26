@@ -1,14 +1,6 @@
 <app-header></app-header>
 <div class="container"> <!--First Display-->
-    <br>
-    <div class="row">
-        <div [hidden]="!showhome" class="col-9"><app-home></app-home></div>
-        <div [hidden]="!showlyrics" class="col-9"><app-song></app-song></div>
-        <div [hidden]="!savedbar" class="col-3"><app-savedlyricsbar></app-savedlyricsbar></div>
-        <div [hidden]="!showsavedlyrics" class="col-12"><app-savedlyricspage></app-savedlyricspage></div>
-
-    </div>
-
+  
     <!-- <div class="row" [hidden]="!firstdisplay">
         <div class="col-9"><button (click)="gotolyrics()" class="btn btn-primary">Lyrics page</button>   </div>
         
@@ -27,4 +19,18 @@
     </div> -->
 </div>
 
-<app-footer></app-footer>
+<div class="flex-wrapper">
+    <div class="container">
+        <br>
+        <div class="row">
+            <div [hidden]="!showhome" class="col-9"><app-home></app-home></div>
+            <div [hidden]="!showlyrics" class="col-9"><app-song></app-song></div>
+            <div [hidden]="!savedbar" class="col-3"><app-savedlyricsbar></app-savedlyricsbar></div>
+            <div [hidden]="!showsavedlyrics" class="col-12"><app-savedlyricspage></app-savedlyricspage></div>
+    
+        </div>
+    
+    </div>
+    <div class="footer">
+        <app-footer></app-footer></div>
+  </div>

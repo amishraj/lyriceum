@@ -49,6 +49,7 @@ export class SongComponent implements OnInit {
     .subscribe(data=>{
       this.showalbumerr=false;
       this.nosongerr=false;
+      this.showemptymsg=false;
 
       this.onActivate('');
       this.keyword=data;

@@ -2,7 +2,7 @@
     <div class="card-header"> 
         
         <div class="row">
-            <div class="col align-middle text-center">Saved Lyrics </div>
+            <div class="col "> <h5>Your Lyriceum</h5> </div>
             <div class="col-auto">
               <button (click)="goSaved()" class="btn btn-info btn-sm">
               <i class="fa fa-arrow-right" aria-hidden="true"></i>
@@ -12,6 +12,10 @@
 
     <div class="card-body">
       <app-sidenote  *ngFor="let lyric of lyrics" [nLyric]="lyric.lyric" [nSong]="lyric.song"></app-sidenote>
+
+     <span *ngIf="lyrics.length==0">
+        Looking a Little Empty There! <hr> <span class="text-info"> Find  Lyrics to Save to Get Started.  </span>
+    </span>
       <!-- <div>
         <p>{{lyric.lyric}}</p>
       </div> -->

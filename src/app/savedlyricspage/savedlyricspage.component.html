@@ -1,7 +1,36 @@
+<div class="container" *ngIf="!lookingempty" style="margin-bottom: 55px;">
+    <br>
+    <h1  class="card-title d-flex justify-content-center text-muted">Your Lyriceum</h1>
+    <p *ngIf="alerts.length == 0" class=" d-flex justify-content-center text-muted">Click to Copy. It's that simple.</p>
+    <div *ngFor="let alert of alerts; let i = index" class="alert alert-success" role="alert">
+        Lyrics Copied!
+        <button type="button" (click)="dismissSuccess(i)" class="close pull-right" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      
+    <hr>
+    <!-- <div *ngFor="let alert of alerts">
+        <alert [type]="alert.type" [dismissible]="dismissible"><span [innerHtml]="alert.msg"></span></alert>
+      </div> -->
+ 
+    <!-- <h6 class="card-subtitle  d-flex justify-content-center text-muted">
+      Looking a little empty there! Find lyrics to Save to Get Started.</h6>
+   -->
+  </div>
 
-<div class="row"> 
+<div *ngIf="!lookingempty" class="row"> 
     <app-note *ngFor="let note of savedlyrics" 
     (noteDelete)="onNoteDeleted($event)"
+    (alertmsg)="onSuccessAlert($event)"
     [nSong]="note.song"
      [nLyric]="note.lyric"></app-note>
+</div>
+
+<div class="container" *ngIf="lookingempty" style="margin-bottom: 55px;">
+  <br>
+  <h1  class="card-title d-flex justify-content-center">Welcome to Your Lyriceum</h1>
+  <h6 class="card-subtitle  d-flex justify-content-center text-muted">
+    Looking a little empty there! Find lyrics to Save to Get Started.</h6>
+
 </div>

@@ -35,7 +35,7 @@ export class SpotifyService {
     // console.log("Token= " + token)
 
     let searchParams= new HttpParams();
-    searchParams= searchParams.append('limit', '50')
+    searchParams= searchParams.append('limit', '10')
 
 
 

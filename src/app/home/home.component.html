@@ -1,5 +1,6 @@
 
  <h1>New Releases</h1>  
+ <div class="card-subtitle text-muted">Fresh off the block</div>
   <hr>
 
   <div class="d-flex justify-content-center">
@@ -12,7 +13,8 @@
   <ng-container *ngIf=" !loading">
 
 
-  <div (click)="gotolyrics(item.artists[0].name, item.name, item.album_type, item.images[0].url)" *ngFor="let item of result" class="card mb-1" >
+  <div (click)="gotolyrics(item.artists[0].name, item.name, item.album_type, item.images[0].url)" *ngFor="let item of result" 
+      class="bg-light zoom card mb-1" >
     <div class="row no-gutters">
       <div class="col-md-3">
         <img src="{{item.images[0].url}}" class="card-img h-100" alt="...">

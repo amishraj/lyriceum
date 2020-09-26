@@ -37,17 +37,17 @@ export class HeaderComponent implements OnInit {
   }
 
   gotolyrics(artist:string, track:string, image:string){
-    this.calllyrics();
+    this.headerappService.sendNavigation("lyrics")
     this.homelyricsservice.sendSongInfo(artist, track, image)
   }
 
   calllyrics(){
-    this.headerappService.sendNavigation("lyrics")
+    this.headerappService.sendNavigation("lyriceum")
   }
 
   sendsearch(){
     // this.calllyrics();
-    this.headerappService.sendSearchWord(this.searchword)
+    // this.headerappService.sendSearchWord(this.searchword)
 
     this.spotifyservice.search(this.token,this.searchword).subscribe(data=> {
       // console.log(data)
@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
       // console.log(this.result_artists)
       var temp=data['tracks']
       this.result_songs=temp['items'];
-        console.log( this.result_songs)
+        // console.log( this.result_songs)
 
 
     }, error=>{

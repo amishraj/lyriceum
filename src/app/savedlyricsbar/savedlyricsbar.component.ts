@@ -9,14 +9,23 @@ import {SavedpagetosidebarService} from '../savedpagetosidebar.service'
 })
 export class SavedlyricsbarComponent implements OnInit {
 
-  lyrics
+  lyrics=[]
 
   allnotessubscription
 
   constructor(private headerappService: HeaderAppService, private savedpagetosidebar: SavedpagetosidebarService) { 
     this.allnotessubscription= this.savedpagetosidebar.getAll()
       .subscribe(data=>{
+        var temparr;
         this.lyrics=data;
+
+        if(this.lyrics.length>5){
+          temparr=this.lyrics
+          this.lyrics=[];
+          for(var i=0; i<5; i++){
+            this.lyrics[i]=temparr[i]
+          }
+        }
       })
     }
 

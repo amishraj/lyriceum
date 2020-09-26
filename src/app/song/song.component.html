@@ -13,7 +13,7 @@
         <button class="btn btn-primary" (click)="onRequestSent()">Submit</button>
     </div>
 </div> -->
-
+<!-- 
 <div *ngIf="showemptymsg">
   <div class="card" >
     <div class="card-body">
@@ -21,8 +21,13 @@
      <h6 class="text-info">Start searching or select a song from the Home Page to see its lyrics!</h6>
     </div>
   </div>
-</div>
+</div> -->
 
+<div *ngIf="showemptymsg">
+  <h1  class="text-muted card-title d-flex justify-content-center">Looking a Little Empty</h1>
+   <hr>
+     <h6 class="d-flex justify-content-center text-info">Start searching or select a song from the Home Page to see its lyrics!</h6>
+</div>
 <app-songdetails
 [nSong]="song"
 [nArtist]="artist"
@@ -37,6 +42,17 @@
     <span class="sr-only">Loading...</span>
   </div>
 </div>
+
+<div class="alert alert-danger" *ngIf="showalbumerr">
+  <h3>No Lyrics Available</h3>
+  <p>You did not select a Single. Please select a single to view lyrics</p>
+</div>
+
+<div class="alert alert-danger" *ngIf="nosongerr">
+  <h3>No Lyrics Available</h3>
+  <p>Lyrics could not be retrieved for the song</p>
+</div>
+<app-lyrics *ngIf="!showemptymsg && !loading && !nosongerr && !showalbumerr"[nSong]="song"  [nLyric]="lyrics"></app-lyrics>
 
 <!-- <ng-container *ngIf="!nosongerr && !showalbumerr && !loading && !showinglyrics">
 
@@ -65,13 +81,3 @@
 </div> -->
 
 
-<div class="alert alert-danger" *ngIf="showalbumerr">
-  <h3>No Lyrics Available</h3>
-  <p>You did not select a Single. Please select a single to view lyrics</p>
-</div>
-
-<div class="alert alert-danger" *ngIf="nosongerr">
-  <h3>No Lyrics Available</h3>
-  <p>Lyrics could not be retrieved for the song</p>
-</div>
-<app-lyrics *ngIf="!showemptymsg && !loading && !nosongerr && !showalbumerr"[nSong]="song"  [nLyric]="lyrics"></app-lyrics>

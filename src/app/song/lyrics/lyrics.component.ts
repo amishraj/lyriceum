@@ -43,6 +43,7 @@ export class LyricsComponent implements OnInit {
     // console.log("Saving... " + this.selectedText);
 
     this.lyricssavedpageservice.sendNote(this.song, this.selectedText);
+    
   }
 
   showSelectedText() {
