@@ -21,7 +21,7 @@ export class LyricsComponent implements OnInit {
   constructor(private lyricssavedpageservice: LyricsSavedpageService) { 
 
     startselecting=false;
-    console.log("Start Selecting: " + startselecting)
+    // console.log("Start Selecting: " + startselecting)
   }
 
   startsaving(){
@@ -40,7 +40,7 @@ export class LyricsComponent implements OnInit {
   }
 
   saveLyrics(){
-    // console.log("Saving... " + this.selectedText);
+    //  console.log("Saving... " + this.selectedText);
 
     this.lyricssavedpageservice.sendNote(this.song, this.selectedText);
     

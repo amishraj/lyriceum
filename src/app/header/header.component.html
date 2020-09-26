@@ -18,7 +18,7 @@
           <a (click)="calllyrics()" class="nav-link" href="#">Your Lyriceum <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+            <a data-toggle="modal" data-target="#exampleModal" class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
           </li>
          
       </ul>
@@ -67,6 +67,29 @@
     </div>
   </nav>
 
+<!--About Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">About Lyriceum</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Admit it, we all have a secret place where we copy & paste our favorite lyrics. But wouldn't it be easier to just have it all in one place?
+        <br> <br>
+       <b> Welcome to Lyriceum </b>
+       <br><br>
+      </div>
+      
+        <div style="float:left;" class=" d-flex justify-content-center card-subtitle text-muted">Developed by Amish Raj & Utkarsh Agnihotri</div>
+        <!-- <button type="button" class="btn btn-info" data-dismiss="modal">Close</button> -->
+     <br>
+    </div>
+  </div>
+</div>
 
   <!-- <button type="button" class="btn btn-primary" (click)="dropdown.show()">Show</button>
   <button type="button" class="btn btn-primary" (click)="dropdown.hide()">Hide</button> -->

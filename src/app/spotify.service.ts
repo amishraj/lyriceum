@@ -48,6 +48,25 @@ export class SpotifyService {
 
   }
 
+  getTrackInfo(id:any, token:any){
+    return this.http.get('https://api.spotify.com/v1/tracks/' + id
+    ,{
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer '+ token})
+      
+    }) 
+  }
+
+  getAlbumTracks(id:any, token:any){
+    return this.http.get('https://api.spotify.com/v1/albums/' + id+ '/tracks'
+    ,{
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer '+ token})
+      
+    }) 
+
+  }
+
   getAuthToken(){
     let body = new URLSearchParams();
     body.set('grant_type', 'client_credentials');

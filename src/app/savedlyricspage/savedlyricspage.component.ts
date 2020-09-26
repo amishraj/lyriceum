@@ -32,8 +32,9 @@ export class SavedlyricspageComponent implements OnInit {
     @Inject(LOCAL_STORAGE) private storage: StorageService) { 
     this.gotnotesubscription= this.lyricssavedpage.getNote()
     .subscribe(data=>{
+
        this.savedlyrics.unshift(data);
-      //  console.log("Got new note: " + JSON.stringify(data))
+       console.log("Got new note: " + JSON.stringify(data))
       //  console.log("Got new this: " + JSON.stringify(this.savedlyrics))
       
       this.storage.set(STORAGE_KEY, this.savedlyrics);
@@ -95,7 +96,7 @@ export class SavedlyricspageComponent implements OnInit {
 
   ngOnInit(): void {
     this.savedlyrics= this.storage.get(STORAGE_KEY);
-    if(this.savedlyrics.length==0){
+    if( this.savedlyrics==null){
       this.savedlyrics=[];
     }
     else{

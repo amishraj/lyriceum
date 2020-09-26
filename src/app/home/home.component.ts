@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {SpotifyService} from '../spotify.service'
 import {HttpClient} from '@angular/common/http'
 import {HomeLyricsService} from '../home-lyrics.service'
@@ -13,7 +13,14 @@ export class HomeComponent implements OnInit {
   token
   result
 
+  albumsongs
+
+  current_album=''
+  current_artist=''
+
   showModalBox: boolean = false;
+
+  @ViewChild ('getalbumtracks') getalbumtracks;
 
   loading:boolean=false
 
@@ -38,6 +45,10 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  getalbumtracksfunc(){
+    this.getalbumtracks.nativeElement.click();
+  }
+
   onActivate(event:any) { //function to scroll to top
     let scrollToTop = window.setInterval(() => {
         let pos = window.pageYOffset;
@@ -49,15 +60,55 @@ export class HomeComponent implements OnInit {
     }, 0);
   }
 
-  gotolyrics(artist:string, song:string, type:string, image:string){
+  gotolyrics(artist:string, song:string, type:string, image:string, id:string){
+    
 
-    if(type!='single'){
-      this.homelyricsservice.sendAlbumError();
+    if(type=='single'){
+      this.homelyricsservice.sendSongInfo(artist,song, image)
       this.homeappservice.showLyricsFromHome();
+    }
+    else if(type=='album' || type=='compilation'){
+      // console.log("Album id: "+ id)
+
+      this.spotifyservice.getAuthToken().subscribe(responseData=>{
+        
+        this.token=responseData['access_token'];
+        // console.log("Got Token: "+ this.token)
+  
+        this.current_album=song;
+        this.current_artist=artist;
+
+        this.spotifyservice.getAlbumTracks(id, this.token).subscribe(data=>{
+          // console.log(data)
+          this.albumsongs= data['items']
+        })
+      })
+
+      this.getalbumtracksfunc();
+    }
+    else if(type=='track'){
+      // console.log("Called but no img")
+
+      this.getalbumtracksfunc(); //opens modal
+
+      this.spotifyservice.getAuthToken().subscribe(responseData=>{
+        
+        this.token=responseData['access_token'];
+        // console.log("Got Token: "+ this.token)
+
+        this.spotifyservice.getTrackInfo(id, this.token).subscribe(data=>{
+          //  console.log(data)
+          var sendimage= data['album']['images'][0]['url']
+          this.homelyricsservice.sendSongInfo(artist,song, sendimage)
+          this.homeappservice.showLyricsFromHome();
+        })
+      })
+      
 
     }
     else{
-      this.homelyricsservice.sendSongInfo(artist,song, image)
+      // console.log("Called lyrics and type= " + type)
+      this.homelyricsservice.sendAlbumError();
       this.homeappservice.showLyricsFromHome();
     }
   }
