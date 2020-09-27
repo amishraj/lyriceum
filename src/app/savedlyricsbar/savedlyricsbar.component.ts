@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HeaderAppService} from '../header-app.service'
 import {SavedpagetosidebarService} from '../savedpagetosidebar.service'
+import { SavedlyricsbarHeaderService} from '../savedlyricsbar-header.service'
 
 @Component({
   selector: 'app-savedlyricsbar',
@@ -13,7 +14,8 @@ export class SavedlyricsbarComponent implements OnInit {
 
   allnotessubscription
 
-  constructor(private headerappService: HeaderAppService, private savedpagetosidebar: SavedpagetosidebarService) { 
+  constructor(private headerappService: HeaderAppService, private savedpagetosidebar: SavedpagetosidebarService,
+    private savedlyricsbarheader: SavedlyricsbarHeaderService) { 
     this.allnotessubscription= this.savedpagetosidebar.getAll()
       .subscribe(data=>{
         var temparr;
@@ -30,6 +32,7 @@ export class SavedlyricsbarComponent implements OnInit {
     }
 
   goSaved(){
+    this.savedlyricsbarheader.sendNote();
     this.headerappService.sendNavigation('Saved');
   }
 

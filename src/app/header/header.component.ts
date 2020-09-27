@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import {HeaderAppService} from '../header-app.service'
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 import {SpotifyService}from '../spotify.service'
 import { HomeLyricsService } from '../home-lyrics.service'
 import {HeaderLyricsService} from '../header-lyrics.service'
 import {HeaderSongService} from '../header-song.service'
+import {SavedlyricsbarHeaderService} from '../savedlyricsbar-header.service'
 
 @Component({
   selector: 'app-header',
@@ -14,12 +15,15 @@ import {HeaderSongService} from '../header-song.service'
 })
 export class HeaderComponent implements OnInit {
 
+  @ViewChild ('dropdownfakebtn') dropdownfakebtn;
+
   searchword='';
   token
   result_songs
   error
 
   showtogglebtn:boolean=false;
+  hidedropdown:boolean=true;
 
   togglestatussubscription; //for visibility of the toggle button for selecting/not selecting
 
@@ -30,7 +34,8 @@ export class HeaderComponent implements OnInit {
   constructor(private headerappService: HeaderAppService, private spotifyservice: SpotifyService
     , private homelyricsservice: HomeLyricsService,
     private headerlyricsservice: HeaderLyricsService,
-    private headersongservice: HeaderSongService) { 
+    private headersongservice: HeaderSongService,
+    private savedlyricsbarheaderservice: SavedlyricsbarHeaderService) { 
     this.spotifyservice.getAuthToken().subscribe(responseData=>{
       this.token=responseData['access_token'];
     })
@@ -50,6 +55,13 @@ export class HeaderComponent implements OnInit {
     })
 
     this.alerthidesubscription= this.headersongservice.gettogglefunc()
+    .subscribe(data=>{
+      if(data=='hide'){
+        this.showtogglebtn=false;
+      }
+    })
+
+   var togglefromsidebar= this.savedlyricsbarheaderservice.getNote()
     .subscribe(data=>{
       if(data=='hide'){
         this.showtogglebtn=false;
@@ -88,7 +100,19 @@ export class HeaderComponent implements OnInit {
     this.headerappService.sendNavigation("lyriceum")
   }
 
+  dropdownfakefunc(){
+    this.dropdownfakebtn.nativeElement.click();
+  }
   sendsearch(){
+    if(this.searchword.length==0){
+      this.hidedropdown=true;
+    }else{
+      this.hidedropdown=false;
+
+    }
+  //   if(this.searchword.length>0 && this.searchword.length<2){
+  //   this.dropdownfakefunc();
+  // }
     // this.calllyrics();
     // this.headerappService.sendSearchWord(this.searchword)
 

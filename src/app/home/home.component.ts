@@ -13,6 +13,10 @@ export class HomeComponent implements OnInit {
   token
   result
 
+  kanyequote:string;
+
+  globalresult
+
   albumsongs
 
   current_album=''
@@ -26,7 +30,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private spotifyservice: SpotifyService, 
     private homelyricsservice: HomeLyricsService,
-    private homeappservice: HomeAppService) { 
+    private homeappservice: HomeAppService,
+    private http: HttpClient) { 
 
     this.loading=true;
     this.spotifyservice.getAuthToken().subscribe(responseData=>{
@@ -42,7 +47,23 @@ export class HomeComponent implements OnInit {
 
         this.loading=false;
       })
+
+      this.spotifyservice.globalTopFifty(this.token).subscribe(data=>{
+
+        this.globalresult= data['tracks']['items']
+        console.log(this.globalresult)
+        var temp=this.globalresult;
+        this.globalresult=[];
+        for(var i=0; i<10; i++){
+          this.globalresult[i]=temp[i]
+        }
+      })
     })
+
+    var kanyequotesubscription= this.http.get("https://api.kanye.rest/").subscribe(data=>{
+      this.kanyequote=data['quote'];
+    })
+
   }
 
   getalbumtracksfunc(){

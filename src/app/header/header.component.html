@@ -32,19 +32,20 @@
         <div class="dropdown">     <!-- <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
       Button dropdown <span class="caret"></span>
     </button> -->
+    <!-- <button #dropdownfakebtn data-toggle="dropdown" class="btn btn-primary">Fake Button</button> -->
     <input 
     class="input-large search-query form-control mr-sm-2"
     [(ngModel)]="searchword" 
     type="text"
      placeholder="Search Songs"
+     data-toggle="dropdown"
       aria-label="Search"
-      data-toggle="dropdown"
       (input)="sendsearch()"
       (keydown.backspace)="backspacefunction()"
 
    [ngModelOptions]="{standalone: true}">
    
-   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+   <div [hidden]="hidedropdown" class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
     <li (click)="gotolyrics(song.artists[0].name, song.name, song.album.images[0].url, song.external_urls.spotify)" 
      *ngFor="let song of result_songs" >
      <div class="row">
@@ -105,3 +106,4 @@
     <li  *ngFor="let song of result_songs" ><a class="dropdown-item" href="#">{{song.name}}- {{song.artists[0].name}}</a></li>  
     </div>
   </div> -->
+

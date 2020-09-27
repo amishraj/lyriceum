@@ -1,6 +1,95 @@
+<div class="card bg-dark text-white" >
+  <div class="crop-height flip">
+     <img class="card-img scale flip" style="filter: brightness(60%) grayscale(100%)" src='assets/travis4.jpg' alt="Card image">
+   </div>
+   <div class="card-img-overlay">
+     <h3 class="card-title">Welcome to Lyriceum</h3>
+     <p class="card-text">
+         Find Lyrics and Save Them. <i>Very</i> Clean.</p> <br><br><br><br><br><br><br>
 
-  <h1  class="card-title d-flex justify-content-center text-muted">New Releases</h1>
-  <p  class=" d-flex justify-content-center text-muted">Fresh off the Block.</p>
+         <i class="fab fa-spotify"></i> &nbsp; 
+         <span class="text-white">Powered by the Spotify API</span>
+     <!-- <p class="card-text">ASTROWORLD</p> -->
+   </div>
+ </div>
+<br> <br>
+
+  <h1 *ngIf=" !loading" class="card-title d-flex justify-content-center text-muted">New Releases</h1>
+  <p *ngIf=" !loading" class=" d-flex justify-content-center text-info">Today's Top 10 Fresh off the Block.</p>
+
+  <ng-container *ngIf=" !loading">
+  <table class="table table-hover ">
+    <!-- <thead>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Song</th>
+        <th scope="col">Artist</th>
+        <th scope="col">Album</th>
+      </tr>
+    </thead> -->
+    <tbody>
+      <tr *ngFor="let item of result" 
+      (click)="gotolyrics(item.artists[0].name, item.name, item.album_type, item.images[0].url, item.id, item.external_urls.spotify)"
+      class="zoom">
+        <th scope="row">
+          <div class="image-cropper">
+            <img src={{item.images[0].url}}  class="rounded" />
+        </div>
+        </th>
+        <td>{{item.name}}</td>
+        <td>{{item.artists[0].name}}</td>
+        <td>{{item.album_type | uppercase}}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<div *ngIf="!loading" class="card bg-dark text-white" >
+  <div class="crop-height flip">
+     <img class=" card-img scale flip" style="filter: brightness(60%)" src='assets/kanye.jpg' alt="Card image">
+   </div>
+   <div class="card-img-overlay">
+     <h3 class="card-title">Kanye West Quotes For No Reason</h3>
+     <p class="card-text">
+         {{kanyequote}}
+        </p> <br><br><br><br><br><br><br>
+
+     <!-- <p class="card-text">ASTROWORLD</p> -->
+   </div>
+ </div>
+
+ <br><br>
+
+<h1 *ngIf=" !loading" class="card-title d-flex justify-content-center text-muted">Leading Globally</h1>
+<p *ngIf=" !loading" class=" d-flex justify-content-center text-info">All Around the World in 10 Songs.</p>
+
+<ng-container *ngIf=" !loading">
+  <table class="table table-hover ">
+    <!-- <thead>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Song</th>
+        <th scope="col">Artist</th>
+        <th scope="col">Album</th>
+      </tr>
+    </thead> -->
+    <tbody>
+      <tr *ngFor="let item of globalresult" 
+      (click)="gotolyrics(item.track.artists[0].name, item.track.name, 'single', item.track.album.images[0].url, item.track.id, item.track.external_urls.spotify)"
+      class="zoom">
+        <th scope="row">
+          <div class="image-cropper">
+            <img src={{item.track.album.images[0].url}}  class="rounded" />
+        </div>
+        </th>
+        <td>{{item.track.name}}</td>
+        <td>{{item.track.artists[0].name}}</td>
+        <td>{{item.track.album.album_type | uppercase}}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
 
 
   <div class="d-flex justify-content-center">
@@ -10,26 +99,24 @@
     </div>
   
 
-  <ng-container *ngIf=" !loading">
-
+  <!-- <ng-container *ngIf=" !loading">
 
   <div (click)="gotolyrics(item.artists[0].name, item.name, item.album_type, item.images[0].url, item.id, item.external_urls.spotify)" *ngFor="let item of result" 
       class="bg-light zoom card mb-1" >
     <div class="row no-gutters">
-      <div class="col-md-3">
+      <div class="image-croppercol-md-3">
         <img src="{{item.images[0].url}}" class="card-img h-100" alt="...">
       </div>
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">{{item.name}}</h5>
-          <!-- <p class="card-text" *ngFor="let artist of item.artists"> {{artist.name}} </p> -->
           <p class="card-text"> {{item.artists[0].name}} </p>
           <p class="card-text"><small class="text-muted">{{item.album_type| uppercase}}</small></p>
         </div>
       </div>
     </div>
   </div>
-  </ng-container>
+  </ng-container> -->
   
 
 <button [hidden]='true' #getalbumtracks type="button" class="btn btn-primary" data-toggle="modal" data-target="#album">
