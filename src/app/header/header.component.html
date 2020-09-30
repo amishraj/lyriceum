@@ -24,6 +24,7 @@
           </li>
          
       </ul>
+
       <div *ngIf="!selecting && showtogglebtn" class="col-auto"> <button class="btn btn-light" (click)="sendtoggle('notselecting')" >Start Selecting</button></div>
           <div *ngIf="selecting && showtogglebtn" class="col-auto"> <button class="btn btn-dark" (click)="sendtoggle('selecting')" > Stop Selecting</button></div>
 

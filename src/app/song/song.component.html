@@ -1,3 +1,11 @@
+<div  class="btn-group-fab  d-lg-none" role="group" aria-label="FAB Menu">
+  <div>
+    <button type="button" class="btn btn-main btn-primary has-tooltip" data-placement="left" title="Menu"> <i class="fa fa-bars"></i> </button>
+    <button (click)="registerclick()" type="button"  class="btn btn-sub btn-info has-tooltip" data-placement="left" title="Fullscreen"> <i class="fa fa-save"></i> </button>
+    <!-- <button type="button" class="btn btn-sub btn-danger has-tooltip" data-placement="left" title="Save"> <i class="fa fa-floppy-o"></i> </button>
+    <button type="button" class="btn btn-sub btn-warning has-tooltip" data-placement="left" title="Download"> <i class="fa fa-download"></i> </button> -->
+  </div>
+</div>
 <!-- <h1>Travis Scott Stargazing</h1> -->
 <!-- <div class="row">
     <div class="col-3">
@@ -48,12 +56,16 @@
   <h3>No Lyrics Available</h3>
   <p>You did not select a Single. Please select a single to view lyrics</p>
 </div>
-
 <div class="alert alert-danger" *ngIf="nosongerr">
   <h3>No Lyrics Available</h3>
   <p>Lyrics could not be retrieved for the song</p>
 </div>
-<app-lyrics *ngIf="!showemptymsg && !loading && !nosongerr && !showalbumerr"[nSong]="song"  [nLyric]="lyrics"></app-lyrics>
+<app-lyrics
+ *ngIf="!showemptymsg && !loading && !nosongerr && !showalbumerr"
+ [nSong]="song" 
+ [nLyric]="lyrics"
+ >
+</app-lyrics>
 
 <!-- <ng-container *ngIf="!nosongerr && !showalbumerr && !loading && !showinglyrics">
 

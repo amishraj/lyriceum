@@ -6,6 +6,8 @@ import {AppSongService} from '../app-song.service'
 import {HomeLyricsService}from '../home-lyrics.service'
 import {HeaderSongService} from '../header-song.service'
 
+import {MobileselecteventService} from '../mobileselectevent.service'
+
 import {ApiseedsService} from '../apiseeds.service'
 
 @Component({
@@ -47,7 +49,8 @@ export class SongComponent implements OnInit {
      private appsongservice: AppSongService,
      private homelyricsservice: HomeLyricsService,
      private headersongservice: HeaderSongService,
-     private apiseedsservice: ApiseedsService) { 
+     private apiseedsservice: ApiseedsService,
+     private mobileselectevent: MobileselecteventService) { 
    
     this.spotifyservice.getAuthToken().subscribe(responseData=>{
       this.token=responseData['access_token'];
@@ -130,6 +133,11 @@ export class SongComponent implements OnInit {
             window.clearInterval(scrollToTop);
         }
     }, 0);
+}
+
+registerclick(){
+  // console.log("Register Click")
+  this.mobileselectevent.sendClick()
 }
 
   findlyrics(artist:string, song:string, image:string, link:string){

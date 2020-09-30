@@ -68,6 +68,10 @@ export class HomeComponent implements OnInit {
 
   }
 
+  registerclick(){
+    console.log("Click Registered")
+  }
+
   getalbumtracksfunc(){
     this.getalbumtracks.nativeElement.click();
   }

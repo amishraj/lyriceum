@@ -34,7 +34,7 @@ export class SavedlyricspageComponent implements OnInit {
     .subscribe(data=>{
 
        this.savedlyrics.unshift(data);
-       console.log("Got new note: " + JSON.stringify(data))
+      //  console.log("Got new note: " + JSON.stringify(data))
       //  console.log("Got new this: " + JSON.stringify(this.savedlyrics))
       
       this.storage.set(STORAGE_KEY, this.savedlyrics);

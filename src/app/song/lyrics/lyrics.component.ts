@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import {LyricsSavedpageService} from '../../lyrics-savedpage.service'
 import {HeaderLyricsService}from '../../header-lyrics.service'
+import {MobileselecteventService} from '../../mobileselectevent.service'
 
 @Component({
   selector: 'app-lyrics',
@@ -21,7 +22,9 @@ export class LyricsComponent implements OnInit {
 
   togglesubscription; //for start/stop selecting
 
-  constructor(private lyricssavedpageservice: LyricsSavedpageService, private headerlyricsservice: HeaderLyricsService) { 
+  constructor(private lyricssavedpageservice: LyricsSavedpageService,
+    private headerlyricsservice: HeaderLyricsService,
+    private mobileselectevent: MobileselecteventService) { 
 
     startselecting=false;
     // console.log("Start Selecting: " + startselecting)
@@ -38,6 +41,18 @@ export class LyricsComponent implements OnInit {
       }
     })
 
+    this.mobileselectevent.getClick()
+    .subscribe(data=>{
+      if(data=="send"){
+        this.startsaving();
+        this.showSelectedText();
+      }
+    })
+
+  }
+
+  registerclick(){
+    console.log("Click Registered")
   }
 
   startsaving(){
@@ -70,7 +85,11 @@ export class LyricsComponent implements OnInit {
 
 
     if(startselecting==true){
+      // console.log("Sending Selections")
+
       this.openbutton.nativeElement.click();
+      // console.log("Sending Selections pu")
+
 
       var text = "";
     if (window.getSelection) {
@@ -78,7 +97,7 @@ export class LyricsComponent implements OnInit {
     } 
     this.selectedText = text;
 
-    // alert("You selected: "+ this.selectedText)
+    //  alert("You selected: "+ this.selectedText)
     }
     
   }
