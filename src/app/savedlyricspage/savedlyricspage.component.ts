@@ -95,9 +95,14 @@ export class SavedlyricspageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.savedlyrics= this.storage.get(STORAGE_KEY);
     if( this.savedlyrics==null){
       this.savedlyrics=[];
+      this.lookingempty=true;
+    }
+    else if( this.savedlyrics.length==0){
+      this.lookingempty=true;
     }
     else{
       this.lookingempty=false;

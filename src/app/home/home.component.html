@@ -133,6 +133,12 @@
         </button>
       </div>
       <div class="modal-body">
+        <div class="d-flex justify-content-center">
+          <div *ngIf="modalloading" class=" spinner-border text-info" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        
         <!--Album's Tracks-->
         <div (click)="gotolyrics(track.artists[0].name, track.name, track.type, 'nourl', track.id, track.external_urls.spotify)"
          *ngFor="let track of albumsongs" class="zoom card border-info mb-3" >

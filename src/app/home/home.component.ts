@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
 
   kanyequote:string;
 
+  modalloading:boolean=true;
+
   globalresult
 
   albumsongs
@@ -51,7 +53,7 @@ export class HomeComponent implements OnInit {
       this.spotifyservice.globalTopFifty(this.token).subscribe(data=>{
 
         this.globalresult= data['tracks']['items']
-        console.log(this.globalresult)
+        // console.log(this.globalresult)
         var temp=this.globalresult;
         this.globalresult=[];
         for(var i=0; i<10; i++){
@@ -102,6 +104,8 @@ export class HomeComponent implements OnInit {
         this.spotifyservice.getAlbumTracks(id, this.token).subscribe(data=>{
           // console.log(data)
           this.albumsongs= data['items']
+
+          this.modalloading=false;
         })
       })
 

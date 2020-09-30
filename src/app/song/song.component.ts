@@ -6,6 +6,8 @@ import {AppSongService} from '../app-song.service'
 import {HomeLyricsService}from '../home-lyrics.service'
 import {HeaderSongService} from '../header-song.service'
 
+import {ApiseedsService} from '../apiseeds.service'
+
 @Component({
   selector: 'app-song',
   templateUrl: './song.component.html',
@@ -44,7 +46,8 @@ export class SongComponent implements OnInit {
   constructor(private http: HttpClient, private spotifyservice: SpotifyService,
      private appsongservice: AppSongService,
      private homelyricsservice: HomeLyricsService,
-     private headersongservice: HeaderSongService) { 
+     private headersongservice: HeaderSongService,
+     private apiseedsservice: ApiseedsService) { 
    
     this.spotifyservice.getAuthToken().subscribe(responseData=>{
       this.token=responseData['access_token'];
@@ -143,26 +146,56 @@ export class SongComponent implements OnInit {
     var songlyrics= this.http
     .get<any>('https://api.lyrics.ovh/v1/'+artist+'/'+song)
     .subscribe(data=>{
-      this.lyrics= data['lyrics'];
+     var templyrics= data['lyrics'];
       // console.log(this.lyrics)
 
-      if(this.lyrics==''){
-        this.showinglyrics=false;
-        this.nosongerr=true;
+      if(templyrics==''){
+        // console.log("Empty Lyrics, checking second api")
 
-        //send event to header to hide
+        var lyrics= this.apiseedsservice.getlyrics(artist, song)
+        .subscribe(data=>{
+          // console.log(data['result']['track']['text'])
 
-        this.headersongservice.sendtogglefunc('hide');
+          this.lyrics=data['result']['track']['text']
+
+
+          this.showinglyrics=true;
+          this.nosongerr=false;
+
+          this.loading=false;
+        }, error=>{
+
+          // console.log("Error")
+
+          this.showinglyrics=false;
+          this.nosongerr=true;
+  
+          //send event to header to hide
+  
+          this.headersongservice.sendtogglefunc('hide');
+
+          this.loading=false;
+          })
+        
+
       }
       else{
+        // console.log("Found")
+
         this.showinglyrics=true;
         this.nosongerr=false;
+
+        this.lyrics= templyrics;
+
+        this.loading=false;
 
       }
       // console.log(this.lyrics)
       // console.log(data);
-      this.loading=false;
+     
     });
+
+  
   }
 
 
