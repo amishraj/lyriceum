@@ -25,10 +25,10 @@
          
       </ul>
 
-      <div *ngIf="!selecting && showtogglebtn" class="col-auto"> <button class="btn btn-light" (click)="sendtoggle('notselecting')" >Start Selecting</button></div>
-          <div *ngIf="selecting && showtogglebtn" class="col-auto"> <button class="btn btn-dark" (click)="sendtoggle('selecting')" > Stop Selecting</button></div>
+      <div *ngIf="!selecting && showtogglebtn" class="d-none d-lg-block col-auto"> <button class="btn btn-light" (click)="sendtoggle('notselecting')" >Start Selecting</button></div>
+          <div *ngIf="selecting && showtogglebtn" class="d-none d-lg-block col-auto"> <button class="btn btn-dark" (click)="sendtoggle('selecting')" > Stop Selecting</button></div>
 
-      <div class="dropdown">
+      <div class="dropdown d-none d-lg-block col-auto">
       <form class="form-inline my-2 my-lg-0 " >
         
      
@@ -71,6 +71,55 @@
       </form>
 
     </div>
+
+<!--MOBILE SEARCH-->
+
+
+<div class="dropdown d-lg-none">
+  <form class="form-inline my-2 my-lg-0 " >
+    
+ 
+    <div class="dropdown">     <!-- <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+  Button dropdown <span class="caret"></span>
+</button> -->
+<!-- <button #dropdownfakebtn data-toggle="dropdown" class="btn btn-primary">Fake Button</button> -->
+<input 
+class="input-large search-query form-control mr-sm-2"
+[(ngModel)]="searchword" 
+type="text"
+ placeholder="Search Songs"
+ data-toggle="dropdown"
+  aria-label="Search"
+  (input)="sendsearch()"
+  (keydown.backspace)="backspacefunction()"
+
+[ngModelOptions]="{standalone: true}">
+
+<div [hidden]="hidedropdown" class="dropdown-menu  dropdown-menu-left" aria-labelledby="dropdownMenuButton">
+<li (click)="gotolyrics(song.artists[0].name, song.name, song.album.images[0].url, song.external_urls.spotify)" 
+ *ngFor="let song of result_songs" >
+ <div class="row">
+ 
+   <div class="col">
+    <a class="dropdown-item" href="#">
+      <img class="rounded" src={{song.album.images[2].url}} style="max-height: 30px; max-width: 30px;" alt="">
+      {{song.name}}- {{song.artists[0].name}}
+     </a>
+   </div>
+   
+ </div>
+ 
+</li>  
+</div>
+</div>
+
+    <!-- <button (click)="sendsearch()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+
+  </form>
+
+</div>
+
+    
     </div>
   </nav>
 
