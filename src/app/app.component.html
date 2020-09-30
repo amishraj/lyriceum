@@ -23,11 +23,12 @@
     <div class="container">
         <br>
         <div class="row">
-            <div [hidden]="!showhome" class=" col-9"><div class=" d-none d-lg-block"><app-home></app-home></div></div>
+            <!--d-none d-lg-block-->
+            <div [hidden]="!showhome" class=" col-9"><div class=" "><app-home></app-home></div></div>
             <div [hidden]="!showlyrics" class="col-9"><app-song></app-song></div>
             <div [hidden]="!savedbar" class=" col-3"><app-savedlyricsbar></app-savedlyricsbar></div>
 
-            <div [hidden]="!showhome" class=" col-12"> <div class=" d-lg-none"> <app-home></app-home></div></div>
+            <!-- <div [hidden]="!showhome" class=" col-12"> <div class=" d-lg-none"> <app-home></app-home></div></div> -->
             <!-- <div [hidden]="!showlyrics" class=" d-lg-none col-12"><app-song></app-song></div> -->
             <div [hidden]="!showsavedlyrics" class="col-12"><app-savedlyricspage></app-savedlyricspage></div>
     
