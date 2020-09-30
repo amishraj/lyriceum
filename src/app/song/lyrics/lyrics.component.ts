@@ -16,6 +16,7 @@ export class LyricsComponent implements OnInit {
 
   @ViewChild ('openbutton') openbutton;
 
+
   selectedText: string = '';
 
   selecting=false;

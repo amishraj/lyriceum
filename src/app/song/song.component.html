@@ -6,36 +6,6 @@
 	</a> 
 </div>
 
-<!-- <div  class="btn-group-fab  d-lg-none" role="group" aria-label="FAB Menu">
-  <div>
-    <button type="button" class="btn btn-main btn-primary has-tooltip" data-placement="left" title="Menu"> <i class="fa fa-bars"></i> </button>
-    <button (click)="registerclick()" type="button"  class="btn btn-sub btn-info has-tooltip" data-placement="left" title="Fullscreen"> <i class="fa fa-save"></i> </button>
-  </div>
-</div> -->
-<!-- <h1>Travis Scott Stargazing</h1> -->
-<!-- <div class="row">
-    <div class="col-3">
-        <input class="form-control" type="text" placeholder="Artist" [(ngModel)]="artist" >
-    </div>
-    <div class="col-3">
-        <input class="form-control" type="text" placeholder="Song" [(ngModel)]="song">
-    </div>
-    <div class="col-3">
-        <input class="form-control" type="text" placeholder="Song" [(ngModel)]="keyword">
-    </div>
-    <div class="col-3">
-        <button class="btn btn-primary" (click)="onRequestSent()">Submit</button>
-    </div>
-</div> -->
-<!-- 
-<div *ngIf="showemptymsg">
-  <div class="card" >
-    <div class="card-body">
-     <h2>Looking a Little Empty There :(</h2> <br>
-     <h6 class="text-info">Start searching or select a song from the Home Page to see its lyrics!</h6>
-    </div>
-  </div>
-</div> -->
 
 <div *ngIf="showemptymsg">
   <h1  class="text-muted card-title d-flex justify-content-center">Looking a Little Empty</h1>
@@ -72,6 +42,38 @@
  [nLyric]="lyrics"
  >
 </app-lyrics>
+
+<!-- <div  class="btn-group-fab  d-lg-none" role="group" aria-label="FAB Menu">
+  <div>
+    <button type="button" class="btn btn-main btn-primary has-tooltip" data-placement="left" title="Menu"> <i class="fa fa-bars"></i> </button>
+    <button (click)="registerclick()" type="button"  class="btn btn-sub btn-info has-tooltip" data-placement="left" title="Fullscreen"> <i class="fa fa-save"></i> </button>
+  </div>
+</div> -->
+<!-- <h1>Travis Scott Stargazing</h1> -->
+<!-- <div class="row">
+    <div class="col-3">
+        <input class="form-control" type="text" placeholder="Artist" [(ngModel)]="artist" >
+    </div>
+    <div class="col-3">
+        <input class="form-control" type="text" placeholder="Song" [(ngModel)]="song">
+    </div>
+    <div class="col-3">
+        <input class="form-control" type="text" placeholder="Song" [(ngModel)]="keyword">
+    </div>
+    <div class="col-3">
+        <button class="btn btn-primary" (click)="onRequestSent()">Submit</button>
+    </div>
+</div> -->
+<!-- 
+<div *ngIf="showemptymsg">
+  <div class="card" >
+    <div class="card-body">
+     <h2>Looking a Little Empty There :(</h2> <br>
+     <h6 class="text-info">Start searching or select a song from the Home Page to see its lyrics!</h6>
+    </div>
+  </div>
+</div> -->
+
 
 <!-- <ng-container *ngIf="!nosongerr && !showalbumerr && !loading && !showinglyrics">
 
