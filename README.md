@@ -1,5 +1,5 @@
 # Lyriceum
-
+Admit it, we all have a secret place where we copy & paste our favorite lyrics. But wouldn't it be easier to just have it all in one place?
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.3.
 
 ## Development server
