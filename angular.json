@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "lyriceum"
+  "defaultProject": "lyriceum",
+  "cli": {
+    "analytics": false
+  }
 }
